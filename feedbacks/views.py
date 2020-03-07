@@ -1,3 +1,5 @@
+import hashlib
+
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -16,6 +18,18 @@ class FeedbackViewSet(viewsets.ModelViewSet):
 
     queryset = Feedback.objects.all()
     serializer_class = FeedbackSerializer
+
+    def create(self, request, *args, **kwargs):
+
+        user_id = str(User.objects.get(auth_token=request.auth.key).id)
+        fb_hash = hashlib.sha1(bytes(user_id + 'PALAVRA CHAVE', encoding='UTF-8')).hexdigest()
+        Feedback.objects.create(hash=fb_hash, receiver_id=user_id)
+
+        data = {
+            'url': 'localhost:8000/api/v1/feedback/' + fb_hash
+        }
+
+        return Response(data=data, status=status.HTTP_201_CREATED)
 
     @action(detail=False, methods=['post'])
     def user(self, request):

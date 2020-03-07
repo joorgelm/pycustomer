@@ -16,4 +16,5 @@ class Feedback(Base):
 
     message = models.TextField(max_length=240)
     sender = models.CharField(max_length=120, null=True)
+    hash = models.CharField(max_length=120, null=False)
     receiver = models.ForeignKey(User, related_name='feedbacks', on_delete=models.CASCADE)
