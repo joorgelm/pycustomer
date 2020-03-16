@@ -1,0 +1,15 @@
+.be-container {
+  margin-left: 224px;
+  width: calc(100% - 224px);
+  height: 100%;
+  @include d-flex();
+  justify-content: center;
+  align-items: flex-start;
+
+  @include viewport(sm) {
+    margin-left: $be-m-none;
+    width: $be-width-full;
+    padding-right: $be-p-s;
+    padding-left: $be-p-s;
+  }
+}

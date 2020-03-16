@@ -1,0 +1,15 @@
+//Background
+
+//Cores de fundos distribuidos para o sistema
+@each $name, $value in $colors {
+  .be-#{$name} {
+    background: #{$value} !important;
+  }
+}
+
+//Color
+@each $name, $value in $colors {
+  .be-color-#{$name} {
+    color: #{$value};
+  }
+}

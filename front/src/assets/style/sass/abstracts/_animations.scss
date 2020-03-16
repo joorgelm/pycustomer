@@ -1,0 +1,67 @@
+//Animation Login
+@keyframes initLogin {
+  from {
+    opacity: 0;
+    transform-origin: center;
+    transform: scale(0.5, 0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1, 1) translateY(15%);
+  }
+}
+
+//Aside Nav
+@keyframes asideOut {
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+    display: none;
+    width: 0px;
+  }
+}
+
+//Component Status
+@keyframes statusActived {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(22px);
+  }
+}
+@keyframes statusDesabilited {
+  from {
+    transform: translateX(22px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes statusActivedLabel {
+  from {
+    transform: translateX(-22px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+@keyframes statusDesabilitedLabel {
+  from {
+    transform: translateX(22px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+
+// Avaliação
+
+@keyframes initAvaliacao {
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}

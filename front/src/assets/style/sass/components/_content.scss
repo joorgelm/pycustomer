@@ -1,0 +1,10 @@
+.be-content {
+  width: $be-width;
+  height: 100%;
+  margin: $be-m-none auto;
+  @extend %be-mc;
+  border-radius: $be-radius-xl;
+  @include viewport(sm) {
+    width: $be-width-full;
+  }
+}

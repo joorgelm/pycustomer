@@ -1,0 +1,17 @@
+//Functions
+
+@function border-default($color: $be-color-dark) {
+  @return 1px solid $color;
+}
+
+@function p($number) {
+  @return $number + px;
+}
+
+@function shadow($x: 0, $y: 0, $d: 0, $color: rgba(0, 0, 0, 0.08)) {
+  @return $y + px $x + px $d + px $color;
+}
+
+@function font-size($px) {
+  @return $px/$be-font-base + rem;
+}
