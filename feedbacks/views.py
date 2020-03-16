@@ -1,4 +1,5 @@
 import hashlib
+import datetime
 
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -21,12 +22,15 @@ class FeedbackViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
 
+        # todo: separar regra de negocio
         user_id = str(User.objects.get(auth_token=request.auth.key).id)
-        fb_hash = hashlib.sha1(bytes(user_id + 'PALAVRA CHAVE', encoding='UTF-8')).hexdigest()
-        Feedback.objects.create(hash=fb_hash, receiver_id=user_id)
+        ts = str(datetime.datetime.now().timestamp())
+        jesus = bytes(user_id + 'PALAVRA CHAVE' + ts, encoding='UTF-8')
+        feedback_hash = hashlib.sha1(jesus).hexdigest()
+        Feedback.objects.create(hash=feedback_hash, receiver_id=user_id)
 
         data = {
-            'url': 'localhost:8000/api/v1/feedback/' + fb_hash
+            'url': 'localhost:8000/api/v1/feedback?fb=' + feedback_hash
         }
 
         return Response(data=data, status=status.HTTP_201_CREATED)
