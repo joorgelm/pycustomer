@@ -39,27 +39,30 @@
           />
           <div class="sub-links">
             <be-btn
-              descricao="Recuperar senha"
+              descricao="Cadastrar"
               color="outline"
               class="be-w-100"
               @click.prevent="showModal = !showModal"
             />
           </div>
         </form>
-        <BeResetPasswordModal v-if="showModal" />
+        <CadastroAtendentesForm v-if="showModal"/>
+        <!-- <BeResetPasswordModal v-if="showModal" /> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import BeResetPasswordModal from '@/components/BeResetPasswordModal/BeResetPasswordModal.vue'
+// import BeResetPasswordModal from '@/components/BeResetPasswordModal/BeResetPasswordModal.vue'
+import CadastroAtendentesForm from '@/components/CadastroAtendentes/CadastroAtendentesForm.vue'
 
 import { mapActions } from 'vuex'
 
 export default {
   components: {
-    BeResetPasswordModal
+    // BeResetPasswordModal,
+    CadastroAtendentesForm
   },
   data () {
     return {
