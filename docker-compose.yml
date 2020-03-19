@@ -1,24 +1,31 @@
-version: "3"
+version: '3'
 
 services:
   api:
-    build: ./api
+    build:
+      dockerfile: Dockerfile
+      context: ./api
+    image: jorgem/pycustomer
     container_name: pycustomer-api
-    restart: always
-    env_file:
-      - .env
-    expose:
-      - 8000
+    env_file: .env
+    volumes:
+    - ./api/feedbacks:/api/feedbacks
+    - ./api/pycustomer:/api/pycustomer
+    ports:
+      - 9000:9000
 
   vue:
-    build: ./front
-    container_name: pycustomer-vue
-    restart: always
-    env_file:
-      - .env
-    links:
-      - api:pycustomer-api
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    image: jorgem/pycustomer-front
+    container_name: pycustomer-front
+    env_file: .env
+    volumes:
+      - ./front/src:/front/src
+    stdin_open: true
+    tty: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     ports:
-      - "9000:9000"
-    expose:
-      - 9000
+      - 8000:8000

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run --name pycustomer-front -p 9000:9000 jorgem/pycustomer-front
+docker run --name pycustomer-front -p 8000:8000 jorgem/pycustomer-front

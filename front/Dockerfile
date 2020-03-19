@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:12.16-slim
 
 MAINTAINER Jorge Melgarejo <melgarejo.colarte@gmail.com>
 
@@ -12,9 +12,10 @@ COPY package.json /front/package.json
 
 COPY . /front
 
+RUN npm install -g @vue/cli@latest
+
 RUN npm install
 
-RUN npm install -g @vue/cli
-
-# start app
 ENTRYPOINT ["npm", "run", "serve"]
+
+EXPOSE 8000
