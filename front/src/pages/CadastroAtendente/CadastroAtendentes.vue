@@ -29,7 +29,7 @@
 import BaseMain from '@/layouts/Main/Main'
 import BeCadastro from '@/components/CadastroAtendentes/CadastroAtendentesForm'
 import satisfacaoAPI from '@/endpoints/satisfacao.js'
-import BeLoadModal from '@/components/BeLoadModal/BeLoadModal.vue'
+// import BeLoadModal from '@/components/BeLoadModal/BeLoadModal.vue'
 
 export default {
   components: {

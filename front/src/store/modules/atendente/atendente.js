@@ -27,10 +27,10 @@ export default {
       })
     },
     logOut ({ commit }) {
-      atendenteAPI.logout().then(() => {
+      // atendenteAPI.logout().then(() => {
         window.localStorage.removeItem('atendente')
         commit('setAtendenteLogado', null)
-      })
+      // })
     },
     refreshSession ({ commit }) {
       atendenteAPI.renovaSessao().then(response => {
