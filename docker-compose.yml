@@ -7,12 +7,16 @@ services:
       context: ./api
     image: jorgem/pycustomer
     container_name: pycustomer-api
-    env_file: pycustomer.env
+    env_file:
+      - pycustomer.env
+    command: bash docker-entrypoint.sh
     volumes:
     - ./api/feedbacks:/api/feedbacks
     - ./api/pycustomer:/api/pycustomer
     ports:
       - 9000:9000
+    expose:
+      - 9000
 
   vue:
     build:
@@ -20,12 +24,14 @@ services:
       dockerfile: Dockerfile
     image: jorgem/pycustomer-front
     container_name: pycustomer-front
-    env_file: pycustomer.env
+    env_file:
+      - pycustomer.env
+    command: npm run serve
     volumes:
       - ./front/src:/front/src
     stdin_open: true
     tty: true
-    environment:
-      - CHOKIDAR_USEPOLLING=true
     ports:
       - 8000:8000
+    expose:
+      - 8000

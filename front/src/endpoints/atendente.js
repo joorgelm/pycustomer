@@ -5,6 +5,7 @@ export default {
     return http.get(`/atendente/all`, { params })
   },
   login (params) {
+    console.log(http.baseURL)
     return http.post(`/auth/`, params)
   },
   renovaSessao () {

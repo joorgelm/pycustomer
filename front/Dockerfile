@@ -15,7 +15,3 @@ COPY . /front
 RUN npm install -g @vue/cli@latest
 
 RUN npm install
-
-ENTRYPOINT ["npm", "run", "serve"]
-
-EXPOSE 8000
