@@ -58,7 +58,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:8000'
+    os.getenv('FRONT_BASE_URL')
 ]
 
 ROOT_URLCONF = 'pycustomer.urls'

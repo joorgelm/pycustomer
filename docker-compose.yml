@@ -7,7 +7,7 @@ services:
       context: ./api
     image: jorgem/pycustomer
     container_name: pycustomer-api
-    env_file: .env
+    env_file: pycustomer.env
     volumes:
     - ./api/feedbacks:/api/feedbacks
     - ./api/pycustomer:/api/pycustomer
@@ -20,7 +20,7 @@ services:
       dockerfile: Dockerfile
     image: jorgem/pycustomer-front
     container_name: pycustomer-front
-    env_file: .env
+    env_file: pycustomer.env
     volumes:
       - ./front/src:/front/src
     stdin_open: true

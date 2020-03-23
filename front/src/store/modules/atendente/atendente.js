@@ -27,10 +27,8 @@ export default {
       })
     },
     logOut ({ commit }) {
-      // atendenteAPI.logout().then(() => {
-        window.localStorage.removeItem('atendente')
-        commit('setAtendenteLogado', null)
-      // })
+      window.localStorage.removeItem('atendente')
+      commit('setAtendenteLogado', null)
     },
     refreshSession ({ commit }) {
       atendenteAPI.renovaSessao().then(response => {
