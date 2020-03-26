@@ -23,12 +23,18 @@
                 <v-spacer />
               </v-toolbar>
               <v-card-text>
-                <v-form>
+                <v-form
+                  ref="form"
+                  v-model="valid"
+                  lazy-validation
+                >
                   <v-text-field
                     label="Usuário"
                     name="login"
                     type="text"
                     v-model="user.username"
+                    :rules="nameRules"
+                    required
                   />
                   <v-text-field
                     id="password"
@@ -36,12 +42,14 @@
                     name="password"
                     type="password"
                     v-model="user.password"
+                    :rules="passwordRules"
+                    required
                   />
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn color="primary" @click="loginUser">Entrar</v-btn>
+                <v-btn color="primary" :disabled="!valid" @click="validate">Entrar</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -57,9 +65,16 @@ export default {
     data () {
         return {
             user: {
-                username: '',
-                password: ''
-            }
+                username: null,
+                password: null
+            },
+          valid: true,
+          nameRules: [
+            v => !!v || 'Usuário é requerido'
+          ],
+          passwordRules: [
+            v => !!v || 'Senha é requerida'
+          ],
         }
     },
     methods: {
@@ -68,10 +83,14 @@ export default {
         }),
         loginUser () {
           this.login(this.user).then(() => {
-            // todo: redirect to another page
-            window.alert('TAFAREEEEEEEEEEEEEEEEEEEEEL')
+            this.$router.push('home')
           })
+        },
+      validate () {
+        if (this.$refs.form.validate()) {
+          this.loginUser()
         }
+      },
     }
 }
 </script>

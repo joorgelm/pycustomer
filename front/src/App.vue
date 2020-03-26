@@ -6,10 +6,8 @@
       dark
     >
       PyCustomer
-      <v-spacer>
-      </v-spacer>
     </v-app-bar>
-    <router-view />
+    <router-view/>
   </v-app>
 </template>
 

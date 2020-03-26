@@ -6,12 +6,11 @@ const ax = axios.create({
 
 ax.interceptors.request.use((config) => {
 
-  console.log(config.headers.Authorization)
-  if (config.headers.Authorization == null) {
-    const user = JSON.parse(window.localStorage.getItem('user'))
+  if (config.headers.Authorization == null && config.url !== '/auth/') {
+    const user = JSON.parse(window.localStorage.getItem('user'));
 
     if (user) {
-      config.headers.Authorization = `Token ${user.token}`
+      config.headers.Authorization = `Token ${user.token}`;
       return config
     }
 
