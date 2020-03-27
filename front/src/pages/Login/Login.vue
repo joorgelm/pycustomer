@@ -1,5 +1,5 @@
 <template>
-   <v-content>
+   <v-content class="bg-full">
       <v-container
         class="fill-height"
         fluid
@@ -94,3 +94,12 @@ export default {
     }
 }
 </script>
+<style>
+.bg-full {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: linear-gradient(to top, #999999, #1976d2);
+  background-size: 100% 100%, 100% 100% !important;
+}
+</style>
