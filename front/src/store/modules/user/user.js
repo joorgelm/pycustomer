@@ -15,6 +15,9 @@ export default {
             return userAPI.login(data).then(res => {
                 commit('setUser', res.data)
             })
+        },
+        logout ({ commit }){
+            commit('setUser', null)
         }
     },
     getters: {
