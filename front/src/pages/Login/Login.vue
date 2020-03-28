@@ -1,98 +1,84 @@
 <template>
-   <v-content class="bg-full">
-      <v-container
-        class="fill-height"
-        fluid
-      >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-col
-            cols="12"
-            sm="8"
-            md="4"
-          >
-            <v-card class="elevation-12">
-              <v-toolbar
-                color="primary"
-                dark
-                flat
-              >
-                <v-toolbar-title>Login</v-toolbar-title>
-                <v-spacer />
-              </v-toolbar>
-              <v-card-text>
-                <v-form
-                  ref="form"
-                  v-model="valid"
-                  lazy-validation
-                >
-                  <v-text-field
-                    label="Usuário"
-                    name="login"
-                    type="text"
-                    v-model="user.username"
-                    :rules="nameRules"
-                    required
-                  />
-                  <v-text-field
-                    id="password"
-                    label="Senha"
-                    name="password"
-                    type="password"
-                    v-model="user.password"
-                    :rules="passwordRules"
-                    required
-                  />
-                </v-form>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn color="primary" :disabled="!valid" @click="validate">Entrar</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>
+  <v-content class="bg-full">
+    <v-container class="fill-height" fluid>
+      <v-row align="center" justify="center">
+        <v-col cols="12" sm="8" md="4">
+          <v-card class="elevation-12">
+            <v-toolbar color="primary" dark flat>
+              <v-toolbar-title>PyCustomer - Login</v-toolbar-title>
+              <v-spacer />
+            </v-toolbar>
+            <v-card-text>
+              <v-form ref="form" v-model="valid" lazy-validation>
+                <v-text-field
+                  label="Usuário"
+                  name="login"
+                  type="text"
+                  v-model="user.username"
+                  :rules="nameRules"
+                  required
+                />
+                <v-text-field
+                  id="password"
+                  label="Senha"
+                  name="password"
+                  type="password"
+                  v-model="user.password"
+                  :rules="passwordRules"
+                  required
+                />
+              </v-form>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer />
+              <v-btn color="primary" :disabled="!valid" @click="validate">Entrar</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-snackbar v-model="snackbar">
+        Usuário e/ou senha inválidos
+        <v-btn color="pink" text @click="snackbar = false">Fechar</v-btn>
+      </v-snackbar>
+    </v-container>
+  </v-content>
 </template>
 <script>
-
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
-    data () {
-        return {
-            user: {
-                username: null,
-                password: null
-            },
-          valid: true,
-          nameRules: [
-            v => !!v || 'Usuário é requerido'
-          ],
-          passwordRules: [
-            v => !!v || 'Senha é requerida'
-          ],
-        }
-    },
-    methods: {
-        ...mapActions({
-          login: 'login'
-        }),
-        loginUser () {
-          this.login(this.user).then(() => {
-            this.$router.push('home')
-          })
-        },
-      validate () {
-        if (this.$refs.form.validate()) {
-          this.loginUser()
-        }
+  data() {
+    return {
+      user: {
+        username: null,
+        password: null
       },
+      valid: true,
+      nameRules: [v => !!v || "Usuário é requerido"],
+      passwordRules: [v => !!v || "Senha é requerida"],
+      snackbar: false
+    };
+  },
+  methods: {
+    ...mapActions({
+      login: "login"
+    }),
+    loginUser() {
+      this.login(this.user)
+        .then(() => {
+          this.$router.push("home");
+        })
+        .catch(() => {
+          this.snackbar = true
+        });
+    },
+    validate() {
+      if (this.$refs.form.validate()) {
+        this.loginUser();
+      }
     }
-}
+  }
+};
 </script>
 <style>
 .bg-full {
