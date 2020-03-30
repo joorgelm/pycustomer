@@ -37,7 +37,7 @@ export default {
   },
   watch: {
     visible() {
-      this.drawer = this.$props.visible;
+      this.drawer = this.drawer === true ? false : true
     },
   },
   data() {
@@ -47,10 +47,7 @@ export default {
   },
   methods:{
       update (event) {
-          if (!event){
-              this.drawer = false
-              this.$emit('changed')
-          }
+          this.drawer = event
       }
   }
 };
