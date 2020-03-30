@@ -9,7 +9,7 @@
               <v-spacer />
             </v-toolbar>
             <v-card-text>
-              <v-form ref="form" v-model="valid" lazy-validation>
+              <v-form ref="form" v-model="valid" @keyup.enter.native="validate" lazy-validation>
                 <v-text-field
                   label="Usuário"
                   name="login"
@@ -31,11 +31,18 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer />
+              <v-btn outlined color="primary" @click="signDialog = true">Cadastre-se</v-btn>
               <v-btn color="primary" :disabled="!valid" @click="validate">Entrar</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
+      <v-row justify="center">
+        <v-col cols="1" md="auto">
+          <v-btn outlined small color="secondary" >Esqueceu a senha?</v-btn>
+        </v-col>
+      </v-row>
+      <py-sign-up v-if="signDialog" @closed="signDialog = false"/>
       <v-snackbar v-model="snackbar">
         Usuário e/ou senha inválidos
         <v-btn color="pink" text @click="snackbar = false">Fechar</v-btn>
@@ -45,8 +52,14 @@
 </template>
 <script>
 import { mapActions } from "vuex";
+import PySignUp from "@/components/PySignUp";
 
 export default {
+  name: "Login",
+  components: {PySignUp},
+  comments: {
+    PySignUp
+  },
   data() {
     return {
       user: {
@@ -56,7 +69,8 @@ export default {
       valid: true,
       nameRules: [v => !!v || "Usuário é requerido"],
       passwordRules: [v => !!v || "Senha é requerida"],
-      snackbar: false
+      snackbar: false,
+      signDialog: false
     };
   },
   methods: {

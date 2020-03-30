@@ -12,7 +12,7 @@
       </v-list>
       <template v-slot:append>
         <div class="mx-2 mb-4">
-          <v-btn block @click="$emit('bottom-click')">{{ $props.bottomitem.text }}</v-btn>
+          <v-btn block color="secondary" outlined @click="$emit('bottom-click')">{{ $props.bottomitem.text }}</v-btn>
         </div>
       </template>
     </v-navigation-drawer>

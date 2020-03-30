@@ -4,7 +4,6 @@
       :items="navigationDrawerItems"
       :visible="drawer"
       :bottomitem="logoutBtn"
-      @changed="drawer = !drawer"
       @bottom-click="sair"
     />
     <v-app-bar app color="primary" dark>
@@ -37,7 +36,7 @@ export default {
     PyNavDrawer
   },
   data: () => ({
-    drawer: false,
+    drawer: null,
     navigationDrawerItems: [
       { icon: "mdi-home", text: "Inicio" },
       { icon: "mdi-log-out", text: "Respostas" }
