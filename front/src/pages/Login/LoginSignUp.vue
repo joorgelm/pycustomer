@@ -1,9 +1,6 @@
 <template>
   <v-row justify="center">
     <v-dialog :value="true" persistent max-width="600px">
-<!--      <template v-slot:activator="{ on }">-->
-<!--        <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>-->
-<!--      </template>-->
       <v-card>
         <v-card-title>
           <span class="headline">User Profile</span>
@@ -60,18 +57,18 @@
 </template>
 
 <script>
-    export default {
-        name: "PySignUp",
-        data() {
-            return {
-            };
-        },
-        methods: {
-            close () {
-                this.$emit('closed')
-            }
+export default {
+    name: 'LoginSignUp',
+    data() {
+        return {
+        }
+    },
+    methods: {
+        close () {
+            this.$emit('closed')
         }
     }
+}
 </script>
 
 <style scoped>

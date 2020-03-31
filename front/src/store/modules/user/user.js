@@ -26,10 +26,10 @@ export default {
 }
 
 function getSavedState (key) {
-  return JSON.parse(window.localStorage.getItem(key))
+    return JSON.parse(window.localStorage.getItem(key))
 }
 
 function saveState (key, state) {
-  state['timestamp'] = Math.floor(Date.now() / 1000)
-  window.localStorage.setItem(key, JSON.stringify(state))
+    state['timestamp'] = Math.floor(Date.now() / 1000)
+    window.localStorage.setItem(key, JSON.stringify(state))
 }

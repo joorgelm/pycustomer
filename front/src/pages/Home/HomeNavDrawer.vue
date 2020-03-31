@@ -16,39 +16,38 @@
         </div>
       </template>
     </v-navigation-drawer>
-
 </template>
 <script>
 export default {
-  name: "PyNavDrawer",
-  props: {
-    items: {
-      type: Array,
-      required: true
+    name: 'HomeNavDrawer',
+    props: {
+        items: {
+            type: Array,
+            required: true
+        },
+        bottomitem: {
+            type: Object,
+            required: false
+        },
+        visible: {
+            type: Boolean,
+            required: true
+        }
     },
-    bottomitem: {
-      type: Object,
-      required: false
+    watch: {
+        visible() {
+            this.drawer = this.drawer === true ? false : true
+        },
     },
-    visible: {
-      type: Boolean,
-      required: true
+    data() {
+        return {
+            drawer: this.$props.visible
+        }
+    },
+    methods:{
+        update (event) {
+            this.drawer = event
+        }
     }
-  },
-  watch: {
-    visible() {
-      this.drawer = this.drawer === true ? false : true
-    },
-  },
-  data() {
-    return {
-      drawer: this.$props.visible
-    };
-  },
-  methods:{
-      update (event) {
-          this.drawer = event
-      }
-  }
-};
+}
 </script>

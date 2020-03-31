@@ -42,7 +42,7 @@
           <v-btn outlined small color="secondary" >Esqueceu a senha?</v-btn>
         </v-col>
       </v-row>
-      <py-sign-up v-if="signDialog" @closed="signDialog = false"/>
+      <login-sign-up v-if="signDialog" @closed="signDialog = false"/>
       <v-snackbar v-model="snackbar">
         Usuário e/ou senha inválidos
         <v-btn color="pink" text @click="snackbar = false">Fechar</v-btn>
@@ -51,48 +51,48 @@
   </v-content>
 </template>
 <script>
-import { mapActions } from "vuex";
-import PySignUp from "@/components/PySignUp";
+import { mapActions } from 'vuex'
+import LoginSignUp from './LoginSignUp'
 
 export default {
-  name: "Login",
-  components: {PySignUp},
-  comments: {
-    PySignUp
-  },
-  data() {
-    return {
-      user: {
-        username: null,
-        password: null
-      },
-      valid: true,
-      nameRules: [v => !!v || "Usuário é requerido"],
-      passwordRules: [v => !!v || "Senha é requerida"],
-      snackbar: false,
-      signDialog: false
-    };
-  },
-  methods: {
-    ...mapActions({
-      login: "login"
-    }),
-    loginUser() {
-      this.login(this.user)
-        .then(() => {
-          this.$router.push("home");
-        })
-        .catch(() => {
-          this.snackbar = true
-        });
+    name: 'Login',
+    components: {LoginSignUp},
+    comments: {
+        LoginSignUp
     },
-    validate() {
-      if (this.$refs.form.validate()) {
-        this.loginUser();
-      }
+    data() {
+        return {
+            user: {
+                username: null,
+                password: null
+            },
+            valid: true,
+            nameRules: [v => !!v || 'Usuário é requerido'],
+            passwordRules: [v => !!v || 'Senha é requerida'],
+            snackbar: false,
+            signDialog: false
+        }
+    },
+    methods: {
+        ...mapActions({
+            login: 'login'
+        }),
+        loginUser() {
+            this.login(this.user)
+                .then(() => {
+                    this.$router.push('home')
+                })
+                .catch(() => {
+                    this.snackbar = true
+                })
+        },
+        validate() {
+            if (this.$refs.form.validate()) {
+                this.loginUser()
+            }
+        }
     }
-  }
-};
+}
 </script>
 <style>
 .bg-full {

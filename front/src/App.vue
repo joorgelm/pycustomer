@@ -7,13 +7,13 @@
 <script>
 
 export default {
-  name: 'App',
+    name: 'App',
 
-  components: {
-  },
+    components: {
+    },
 
-  data: () => ({
+    data: () => ({
     //
-  }),
-};
+    }),
+}
 </script>
