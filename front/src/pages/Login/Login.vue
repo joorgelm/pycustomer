@@ -1,54 +1,54 @@
 <template>
-  <v-content class="bg-full">
-    <v-container class="fill-height" fluid>
-      <v-row align="center" justify="center">
-        <v-col cols="12" sm="8" md="4">
-          <v-card class="elevation-12">
-            <v-toolbar color="primary" dark flat>
-              <v-toolbar-title>PyCustomer - Login</v-toolbar-title>
-              <v-spacer />
-            </v-toolbar>
-            <v-card-text>
-              <v-form ref="form" v-model="valid" @keyup.enter.native="validate" lazy-validation>
-                <v-text-field
-                  label="Usuário"
-                  name="login"
-                  type="text"
-                  v-model="user.username"
-                  :rules="nameRules"
-                  required
-                />
-                <v-text-field
-                  id="password"
-                  label="Senha"
-                  name="password"
-                  type="password"
-                  v-model="user.password"
-                  :rules="passwordRules"
-                  required
-                />
-              </v-form>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer />
-              <v-btn outlined color="primary" @click="signDialog = true">Cadastre-se</v-btn>
-              <v-btn color="primary" :disabled="!valid" @click="validate">Entrar</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
-      <v-row justify="center">
-        <v-col cols="1" md="auto">
-          <v-btn outlined small color="secondary" >Esqueceu a senha?</v-btn>
-        </v-col>
-      </v-row>
-      <login-sign-up v-if="signDialog" @closed="signDialog = false"/>
-      <v-snackbar v-model="snackbar">
-        Usuário e/ou senha inválidos
-        <v-btn color="pink" text @click="snackbar = false">Fechar</v-btn>
-      </v-snackbar>
-    </v-container>
-  </v-content>
+    <v-content class="bg-full">
+        <v-container class="fill-height" fluid>
+            <v-row align="center" justify="center">
+                <v-col cols="12" sm="8" md="4">
+                    <v-card class="elevation-12">
+                        <v-toolbar color="primary" dark flat>
+                            <v-toolbar-title>PyCustomer - Login</v-toolbar-title>
+                            <v-spacer />
+                        </v-toolbar>
+                        <v-card-text>
+                            <v-form ref="form" v-model="valid" @keyup.enter.native="validate" lazy-validation>
+                                <v-text-field
+                                        label="Usuário"
+                                        name="login"
+                                        type="text"
+                                        v-model="user.username"
+                                        :rules="nameRules"
+                                        required
+                                />
+                                <v-text-field
+                                        id="password"
+                                        label="Senha"
+                                        name="password"
+                                        type="password"
+                                        v-model="user.password"
+                                        :rules="passwordRules"
+                                        required
+                                />
+                            </v-form>
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-spacer />
+                            <v-btn outlined color="primary" @click="signDialog = true">Cadastre-se</v-btn>
+                            <v-btn color="primary" :disabled="!valid" @click="validate">Entrar</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-col>
+            </v-row>
+            <v-row justify="center">
+                <v-col cols="1" md="auto">
+                    <v-btn outlined small color="secondary" >Esqueceu a senha?</v-btn>
+                </v-col>
+            </v-row>
+            <login-sign-up v-if="signDialog" @closed="signDialog = false"/>
+            <v-snackbar v-model="snackbar">
+                Usuário e/ou senha inválidos
+                <v-btn color="pink" text @click="snackbar = false">Fechar</v-btn>
+            </v-snackbar>
+        </v-container>
+    </v-content>
 </template>
 <script>
 import { mapActions } from 'vuex'
@@ -95,11 +95,11 @@ export default {
 }
 </script>
 <style>
-.bg-full {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  background: linear-gradient(to top, #999999, #1976d2);
-  background-size: 100% 100%, 100% 100% !important;
-}
+    .bg-full {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        background: linear-gradient(to top, #999999, #1976d2);
+        background-size: 100% 100%, 100% 100% !important;
+    }
 </style>
