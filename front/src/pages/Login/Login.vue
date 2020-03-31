@@ -37,12 +37,17 @@
                     </v-card>
                 </v-col>
             </v-row>
+            <login-sign-up
+                :visible="signDialog"
+                :form-rules="{username: nameRules, password: passwordRules}"
+                @closed="signDialog = false"
+                @save="saveUser"
+            />
             <v-row justify="center">
                 <v-col cols="1" md="auto">
                     <v-btn outlined small color="secondary" >Esqueceu a senha?</v-btn>
                 </v-col>
             </v-row>
-            <login-sign-up v-if="signDialog" @closed="signDialog = false"/>
             <v-snackbar v-model="snackbar">
                 Usuário e/ou senha inválidos
                 <v-btn color="pink" text @click="snackbar = false">Fechar</v-btn>
@@ -66,16 +71,26 @@ export default {
                 username: null,
                 password: null
             },
+            maxCharacters: 20,
             valid: true,
-            nameRules: [v => !!v || 'Usuário é requerido'],
-            passwordRules: [v => !!v || 'Senha é requerida'],
+            nameRules: [
+                v => !!v || 'Usuário é requerido',
+                v => (v || '').indexOf(' ') < 0 || 'Espaços não são permitidos',
+                v => (v || '').length <= this.maxCharacters || 'Limite de caracteres excedido'
+            ],
+            passwordRules: [
+                v => !!v || 'Senha é requerida',
+                v => (v || '').indexOf(' ') < 0 || 'Espaços não são permitidos',
+                v => (v || '').length <= this.maxCharacters || 'Limite de caracteres excedido'
+            ],
             snackbar: false,
             signDialog: false
         }
     },
     methods: {
         ...mapActions({
-            login: 'login'
+            login: 'login',
+            sign: 'sign'
         }),
         loginUser() {
             this.login(this.user)
@@ -90,6 +105,12 @@ export default {
             if (this.$refs.form.validate()) {
                 this.loginUser()
             }
+        },
+        saveUser(user) {
+            console.log(user)
+            this.sign(user).then(() => {
+                // this.$router.push('home')
+            })
         }
     }
 }

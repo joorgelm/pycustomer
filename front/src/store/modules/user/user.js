@@ -18,6 +18,11 @@ export default {
         },
         logout ({ commit }){
             commit('setUser', null)
+        },
+        sign ({ commit }, data = null){
+            return userAPI.create(data).then(res => {
+                commit('setUser', res.data)
+            })
         }
     },
     getters: {
