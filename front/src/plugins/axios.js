@@ -6,7 +6,7 @@ const ax = axios.create({
 
 ax.interceptors.request.use((config) => {
 
-    if (config.headers.Authorization == null && config.url !== '/auth/') {
+    if (config.headers.Authorization == null && config.url !== '/auth/' && config.url !== '/user/') {
         const user = JSON.parse(window.localStorage.getItem('user'))
 
         if (user) {
