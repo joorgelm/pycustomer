@@ -1,5 +1,5 @@
 <template>
-    <v-content class="bg-full">
+    <v-content class="background-login-color">
         <v-container class="fill-height" fluid>
             <login-sign-in-form
                 :form-rules="{username: nameRules, password: passwordRules}"
@@ -83,12 +83,3 @@ export default {
     }
 }
 </script>
-<style>
-    .bg-full {
-        width: 100%;
-        height: 100vh;
-        position: relative;
-        background: linear-gradient(to top, #999999, #1976d2);
-        background-size: 100% 100%, 100% 100% !important;
-    }
-</style>
