@@ -43,7 +43,7 @@
 
 <script>
 export default {
-    name: 'LoginSignUp',
+    name: 'LoginSignUpDialog',
     props:{
         formRules:{
             type: Object,

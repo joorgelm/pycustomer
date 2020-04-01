@@ -1,43 +1,13 @@
 <template>
     <v-content class="bg-full">
         <v-container class="fill-height" fluid>
-            <v-row align="center" justify="center">
-                <v-col cols="12" sm="8" md="4">
-                    <v-card class="elevation-12">
-                        <v-toolbar color="primary" dark flat>
-                            <v-toolbar-title>PyCustomer - Login</v-toolbar-title>
-                            <v-spacer />
-                        </v-toolbar>
-                        <v-card-text>
-                            <v-form ref="form" v-model="valid" @keyup.enter.native="validate" lazy-validation>
-                                <v-text-field
-                                        label="Usuário"
-                                        name="login"
-                                        type="text"
-                                        v-model="user.username"
-                                        :rules="nameRules"
-                                        required
-                                />
-                                <v-text-field
-                                        id="password"
-                                        label="Senha"
-                                        name="password"
-                                        type="password"
-                                        v-model="user.password"
-                                        :rules="passwordRules"
-                                        required
-                                />
-                            </v-form>
-                        </v-card-text>
-                        <v-card-actions>
-                            <v-spacer />
-                            <v-btn outlined color="primary" @click="signDialog = true">Cadastre-se</v-btn>
-                            <v-btn color="primary" :disabled="!valid" @click="validate">Entrar</v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </v-col>
-            </v-row>
-            <login-sign-up
+            <login-sign-in-form
+                :form-rules="{username: nameRules, password: passwordRules}"
+                @login="loginUser"
+                @signup="signDialog = true"
+            />
+
+            <login-sign-up-dialog
                 :visible="signDialog"
                 :form-rules="{username: nameRules, password: passwordRules}"
                 @closed="signDialog = false"
@@ -57,13 +27,15 @@
 </template>
 <script>
 import { mapActions } from 'vuex'
-import LoginSignUp from './LoginSignUp'
+import LoginSignUpDialog from './LoginSignUpDialog'
+import LoginSignInForm from './LoginSignInForm'
 
 export default {
     name: 'Login',
-    components: {LoginSignUp},
+    components: {LoginSignInForm, LoginSignUpDialog},
     comments: {
-        LoginSignUp
+        LoginSignUpDialog,
+        LoginSignInForm
     },
     data() {
         return {
@@ -92,19 +64,14 @@ export default {
             login: 'login',
             sign: 'sign'
         }),
-        loginUser() {
-            this.login(this.user)
+        loginUser(user) {
+            this.login(user)
                 .then(() => {
                     this.$router.push('home')
                 })
                 .catch(() => {
                     this.snackbar = true
                 })
-        },
-        validate() {
-            if (this.$refs.form.validate()) {
-                this.loginUser()
-            }
         },
         saveUser(user) {
             console.log(user)
