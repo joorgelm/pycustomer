@@ -13,16 +13,41 @@ const router = new Router({
         {
             path: '/',
             name: 'login',
-            component: Login
+            component: Login,
+            meta: {
+                authRequired: false
+            }
         },
         {
             path: '/home',
             name: 'home',
-            component: Home
+            component: Home,
+            meta: {
+                authRequired: true
+            }
         },
 
         { path: '*', redirect: '/' }
     ]
+})
+
+router.beforeEach((routeTo, routeFrom, next) => {
+
+    const authenticated = JSON.parse(window.localStorage.getItem('user')) !== null
+
+    if (authenticated) {
+
+        if (routeTo.meta.authRequired) return next()
+
+        if (routeTo.path !== '/') return next()
+
+        return next({ name: 'home'})
+    }
+
+    if (routeTo.meta.authRequired) return next({ name: 'login'})
+
+    return next()
+
 })
 
 

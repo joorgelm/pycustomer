@@ -1,4 +1,5 @@
 import axios from 'axios'
+import router from '../router'
 
 const ax = axios.create({
     baseURL: process.env.VUE_APP_API_BASE_URL
@@ -6,18 +7,29 @@ const ax = axios.create({
 
 ax.interceptors.request.use((config) => {
 
-    if (config.headers.Authorization == null && config.url !== '/auth/' && config.url !== '/user/') {
-        const user = JSON.parse(window.localStorage.getItem('user'))
+    const user = JSON.parse(window.localStorage.getItem('user'))
 
-        if (user) {
+    if (user) {
+
+        const hour = 3600
+
+        const now = Math.floor(Date.now() / 1000)
+        const period = now - user.timestamp
+
+        if (period > hour) {
+            window.localStorage.removeItem('user')
+            // todo: dispara alert orientando usuario
+            router.push('login')
+        } else {
+            user.timestamp = now
+            window.localStorage.setItem('user', JSON.stringify(user))
             config.headers.Authorization = `Token ${user.token}`
             return config
         }
-
-        window.location = '/'
     }
 
     return config
+
 })
 
 export default ax

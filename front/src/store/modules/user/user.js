@@ -6,7 +6,7 @@ export default {
     },
     mutations: {
         setUser (state, user) {
-            state.user = user
+            state = user
             saveState('user', state)
         }
     },
@@ -35,6 +35,10 @@ function getSavedState (key) {
 }
 
 function saveState (key, state) {
-    state['timestamp'] = Math.floor(Date.now() / 1000)
-    window.localStorage.setItem(key, JSON.stringify(state))
+    if (state) {
+        state['timestamp'] = Math.floor(Date.now() / 1000)
+        window.localStorage.setItem(key, JSON.stringify(state))
+    } else {
+        window.localStorage.removeItem(key)
+    }
 }
