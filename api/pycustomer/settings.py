@@ -145,6 +145,7 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.AnonRateThrottle',
         'rest_framework.throttling.UserRateThrottle'
     ),
+    "EXCEPTION_HANDLER": 'pycustomer.exception_handler.exception_handler.base_exception_handler'
     # 'DEFAULT_THROTTLE_RATES': {
     #     'anon': '5/minute',
     #     'user': '10/minute'
