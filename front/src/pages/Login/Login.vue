@@ -13,9 +13,13 @@
                 @closed="signDialog = false"
                 @save="saveUser"
             />
+            <login-reset-password
+                :visible="resetDialog"
+                @closed="resetDialog = false"
+            />
             <v-row justify="center">
                 <v-col cols="1" md="auto">
-                    <v-btn outlined small color="secondary" >Esqueceu a senha?</v-btn>
+                    <v-btn outlined small color="secondary" @click="resetDialog = true">Esqueceu a senha?</v-btn>
                 </v-col>
             </v-row>
         </v-container>
@@ -25,10 +29,11 @@
 import { mapActions } from 'vuex'
 import LoginSignUpDialog from './LoginSignUpDialog'
 import LoginSignInForm from './LoginSignInForm'
+import LoginResetPassword from './LoginResetPassword'
 
 export default {
     name: 'Login',
-    components: {LoginSignInForm, LoginSignUpDialog},
+    components: {LoginSignInForm, LoginSignUpDialog, LoginResetPassword},
     data() {
         return {
             user: {
@@ -48,7 +53,8 @@ export default {
                 v => (v || '').length <= this.maxCharacters || 'Limite de caracteres excedido'
             ],
             snackbar: false,
-            signDialog: false
+            signDialog: false,
+            resetDialog: false
         }
     },
     methods: {

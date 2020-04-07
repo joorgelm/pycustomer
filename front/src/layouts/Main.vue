@@ -4,7 +4,7 @@
             <div>
                 <v-app-bar app color="primary" dark>
                     <slot name="header" />
-                  <v-toolbar-title>Application</v-toolbar-title>
+                  <v-toolbar-title>Pycustomer</v-toolbar-title>
                 </v-app-bar>
                 <slot name="body" />
                 <v-footer color="primary" app>
