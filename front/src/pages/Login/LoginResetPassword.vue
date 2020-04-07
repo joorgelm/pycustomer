@@ -35,10 +35,6 @@
 export default {
     name: 'LoginResetPassword',
     props:{
-        formRules:{
-            type: Object,
-            required: true
-        },
         visible: {
             type: Boolean,
             required: true
