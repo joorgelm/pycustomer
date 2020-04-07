@@ -18,10 +18,6 @@
                     <v-btn outlined small color="secondary" >Esqueceu a senha?</v-btn>
                 </v-col>
             </v-row>
-            <v-snackbar v-model="snackbar">
-                Usuário e/ou senha inválidos
-                <v-btn color="pink" text @click="snackbar = false">Fechar</v-btn>
-            </v-snackbar>
         </v-container>
     </v-content>
 </template>
@@ -33,10 +29,6 @@ import LoginSignInForm from './LoginSignInForm'
 export default {
     name: 'Login',
     components: {LoginSignInForm, LoginSignUpDialog},
-    comments: {
-        LoginSignUpDialog,
-        LoginSignInForm
-    },
     data() {
         return {
             user: {

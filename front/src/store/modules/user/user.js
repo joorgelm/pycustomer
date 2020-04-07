@@ -24,9 +24,6 @@ export default {
                 commit('setUser', res.data)
             })
         }
-    },
-    getters: {
-
     }
 }
 
