@@ -1,10 +1,23 @@
 export default {
     state: {
-        notification: null
+        notification: null,
+        loading: {
+            visible: false,
+            text: 'Carregando'
+        }
     },
     mutations: {
         setNotification (state, notification) {
             state.notification = notification
+        },
+        setLoading (state, loading) {
+            console.log('OPA')
+            if (loading.text) {
+                state.loading = loading
+            } else {
+                state.loading.visible = loading.visible
+                state.loading.text = 'Carregando'
+            }
         }
     },
     actions: {
@@ -21,11 +34,23 @@ export default {
                 show: false,
                 color: 'error'
             })
+        },
+        showLoading({ commit }, text) {
+            commit('setLoading', {
+                visible: true,
+                text: text
+            })
+        },
+        hideLoading({ commit }) {
+            commit('setLoading', { visible: false })
         }
     },
     getters: {
         getNotification: (state) => {
             return state.notification
+        },
+        getLoadingStatus: (state) => {
+            return state.loading
         }
     }
 }

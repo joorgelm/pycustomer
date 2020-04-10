@@ -1,26 +1,26 @@
 <template>
-  <v-app>
-    <home-nav-drawer
-      :items="navigationDrawerItems"
-      :visible="drawer"
-      :bottomitem="logoutBtn"
-      @bottom-click="sair"
-    />
-    <py-main>
-      <template #header>
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      </template>
-    </py-main>
-    <v-content>
-      <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
-          <v-col class="text-center">
-            <!-- todo -->
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>
-  </v-app>
+    <v-app>
+        <home-nav-drawer
+                :items="navigationDrawerItems"
+                :visible="drawer"
+                :bottomitem="logoutBtn"
+                @bottom-click="sair"
+        />
+        <py-main>
+            <template #header>
+                <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+            </template>
+        </py-main>
+        <v-content>
+            <v-container class="fill-height" fluid>
+                <v-row align="center" justify="center">
+                    <v-col class="text-center">
+                        <!-- todo -->
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-content>
+    </v-app>
 </template>
 
 <script>
@@ -33,6 +33,9 @@ export default {
     components: {
         HomeNavDrawer,
         PyMain
+    },
+    mounted() {
+        this.hideLoading()
     },
     data: () => ({
         drawer: null,
@@ -47,7 +50,8 @@ export default {
     }),
     methods: {
         ...mapActions({
-            logout: 'logout'
+            logout: 'logout',
+            hideLoading: 'hideLoading'
         }),
         sair() {
             this.logout()

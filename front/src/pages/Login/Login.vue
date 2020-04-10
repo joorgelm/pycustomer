@@ -60,15 +60,18 @@ export default {
     methods: {
         ...mapActions({
             login: 'login',
-            sign: 'sign'
+            sign: 'sign',
+            showLoading: 'showLoading',
+            hideLoading: 'hideLoading'
         }),
         loginUser(user) {
+            this.showLoading()
             this.login(user)
                 .then(() => {
                     this.$router.push('home')
                 })
                 .catch(() => {
-                    this.snackbar = true
+                    this.hideLoading()
                 })
         },
         saveUser(user) {
