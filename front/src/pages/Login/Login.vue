@@ -6,7 +6,6 @@
                 @login="loginUser"
                 @signup="signDialog = true"
             />
-
             <login-sign-up-dialog
                 :visible="signDialog"
                 :form-rules="{username: nameRules, password: passwordRules}"
@@ -17,7 +16,7 @@
                 :visible="resetDialog"
                 @closed="resetDialog = false"
             />
-            <v-row justify="center">
+            <v-row v-show="false" justify="center">
                 <v-col cols="1" md="auto">
                     <v-btn outlined small color="secondary" @click="resetDialog = true">Esqueceu a senha?</v-btn>
                 </v-col>
@@ -41,7 +40,6 @@ export default {
                 password: null
             },
             maxCharacters: 20,
-            valid: true,
             nameRules: [
                 v => !!v || 'Usuário é requerido',
                 v => (v || '').indexOf(' ') < 0 || 'Espaços não são permitidos',

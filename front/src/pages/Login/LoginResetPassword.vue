@@ -45,6 +45,9 @@ export default {
             return this.$props.visible
         }
     },
+    data: () => ({
+        valid: true
+    }),
     methods: {
         validate() {
             if (this.$refs.resetform.validate()) {

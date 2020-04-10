@@ -56,6 +56,7 @@ export default {
     },
     watch: {
         visible() {
+            if (this.$refs.sgform) this.$refs.sgform.reset()
             this.dialog = this.$props.visible
         }
     },
@@ -77,9 +78,9 @@ export default {
         validate() {
             if (this.$refs.sgform.validate()) {
                 this.dialog = false
-                this.$emit('save', this.user)
+                this.$emit('save', { ...this.user })
             }
-        }
+        },
     }
 }
 </script>
