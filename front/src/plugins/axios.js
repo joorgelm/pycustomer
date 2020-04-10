@@ -36,6 +36,7 @@ ax.interceptors.request.use((config) => {
 ax.interceptors.response.use(res => {
     return res
 },err => {
+    store.dispatch('hideLoading')
     store.dispatch('showErrorMessage', err.response.data.message)
     return Promise.reject(err)
 })

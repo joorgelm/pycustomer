@@ -75,6 +75,7 @@ export default {
                 })
         },
         saveUser(user) {
+            this.showLoading()
             this.signDialog = false
             this.sign(user).then(() => {
                 this.$router.push('home')
